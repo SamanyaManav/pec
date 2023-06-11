@@ -1,73 +1,91 @@
-#include<iostream>
+#include <iostream>
+
 using namespace std;
-#define SIZE 10
-class Queue
-{
-    int a[SIZE];
-    int rear; //same as tail
-    int front; //same as head
-    public:
-    Queue()
-    {
-    rear = front = -1;
+
+const int MAX_SIZE = 100;
+
+class Queue {
+private:
+    int arr[MAX_SIZE];
+    int front;
+    int rear;
+
+public:
+    Queue() {
+        front = -1;
+        rear = -1;
     }
-    //declaring enqueue, dequeue and display functions
-    void enqueue(int x);
-    int dequeue();	
-    void display();
+
+    void enqueue(int item) {
+        if (rear == MAX_SIZE - 1) {
+            cout << "Queue is full. Unable to enqueue " << item << endl;
+            return;
+        }
+
+        if (isEmpty())
+            front = 0;
+
+        arr[++rear] = item;
+        cout << item << " enqueued to the queue." << endl;
+    }
+
+    void dequeue() {
+        if (isEmpty()) {
+            cout << "Queue is empty. Unable to dequeue." << endl;
+            return;
+        }
+
+        int item = arr[front++];
+        cout << item << " dequeued from the queue." << endl;
+
+        if (front > rear)
+            front = rear = -1;
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            cout << "Queue is empty. No element to peek." << endl;
+            return -1;
+        }
+
+        return arr[front];
+    }
+
+    bool isEmpty() {
+        return front == -1 && rear == -1;
+    }
+
+    bool isFull() {
+        return rear == MAX_SIZE - 1;
+    }
+
+    int size() {
+        if (isEmpty())
+            return 0;
+        else
+            return rear - front + 1;
+    }
 };
 
-// function enqueue - to add data to queue
-void Queue :: enqueue(int x)
-{
-    if(front == -1) 
-    {
-        front++;
-    }
-    if( rear == SIZE-1)
-    {
-        cout << "Queue is full";
-    }
-    else
-    {
-        a[++rear] = x;
-    }
-}
+int main() {
+    Queue myQueue;
 
-// function dequeue - to remove data from queue
-int Queue :: dequeue()
-{
-    return a[++front]; // following approach [B], explained above
-}
+    myQueue.enqueue(10);
+    myQueue.enqueue(20);
+    myQueue.enqueue(30);
+    myQueue.enqueue(40);
+    myQueue.enqueue(50);
+    myQueue.enqueue(60);  // Queue is full. Unable to enqueue 60
 
-// function to display the queue elements
-void Queue :: display()
-{
-    int i;
-    for( i = front; i <= rear; i++)
-    {
-        cout << a[i] << endl;
-    }
-}
-// the main function
-int main()
-{
-    Queue q;
-    q.enqueue(10);
-    q.enqueue(100);
-    q.enqueue(1000);
-    q.enqueue(1001);
-    q.enqueue(1002);
+    cout << "Front element: " << myQueue.peek() << endl;  // Front element: 10
+    cout << "Queue size: " << myQueue.size() << endl;     // Queue size: 5
 
-    q.dequeue();
+    myQueue.dequeue();
+    myQueue.dequeue();
+    myQueue.dequeue();
 
-    q.enqueue(1003);
+    cout << "Front element after dequeue: " << myQueue.peek() << endl;  // Front element after dequeue: 40
+    cout << "Queue size after dequeue: " << myQueue.size() << endl;     // Queue size after dequeue: 2
 
-    q.dequeue();
-    q.dequeue();
-
-    q.enqueue(1004);
-    
-    q.display();
     return 0;
 }
