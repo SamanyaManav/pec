@@ -64,31 +64,32 @@ public:
         head = head->next;
         delete temp;
     }
-void deleteFromEnd() {
-    if (head == nullptr) {
-        return;
+    // Delete the Last node of the list
+    void deleteFromEnd() {
+        if (head == nullptr) {
+            return;
+        }
+
+        // If the list has only one node
+        if (head->next == nullptr) {
+            delete head;
+            head = nullptr;
+            return;
+        }
+
+        Node* current = head;
+        Node* prev = nullptr;
+
+        // Traverse to the last node
+        while (current->next != nullptr) {
+            prev = current;
+            current = current->next;
+        }
+
+        // Update the previous node's next pointer and delete the last node
+        prev->next = nullptr;
+        delete current;
     }
-
-    // If the list has only one node
-    if (head->next == nullptr) {
-        delete head;
-        head = nullptr;
-        return;
-    }
-
-    Node* current = head;
-    Node* prev = nullptr;
-
-    // Traverse to the last node
-    while (current->next != nullptr) {
-        prev = current;
-        current = current->next;
-    }
-
-    // Update the previous node's next pointer and delete the last node
-    prev->next = nullptr;
-    delete current;
-}
 
     // Print the elements of the list
     void display() {
