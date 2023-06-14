@@ -64,6 +64,7 @@ public:
         head = head->next;
         delete temp;
     }
+    
     // Delete the Last node of the list
     void deleteFromEnd() {
         if (head == nullptr) {
