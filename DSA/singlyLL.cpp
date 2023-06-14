@@ -64,6 +64,31 @@ public:
         head = head->next;
         delete temp;
     }
+void deleteFromEnd() {
+    if (head == nullptr) {
+        return;
+    }
+
+    // If the list has only one node
+    if (head->next == nullptr) {
+        delete head;
+        head = nullptr;
+        return;
+    }
+
+    Node* current = head;
+    Node* prev = nullptr;
+
+    // Traverse to the last node
+    while (current->next != nullptr) {
+        prev = current;
+        current = current->next;
+    }
+
+    // Update the previous node's next pointer and delete the last node
+    prev->next = nullptr;
+    delete current;
+}
 
     // Print the elements of the list
     void display() {
@@ -79,15 +104,20 @@ public:
 int main() {
     SinglyLinkedList myList;
 
+    myList.insertAtBeginning(5); // Insert 5 at the beginning
+    myList.insertAtBeginning(4); // Insert 4 at the beginning
     myList.insertAtBeginning(3); // Insert 3 at the beginning
     myList.insertAtBeginning(2); // Insert 2 at the beginning
-    myList.insertAtEnd(4);       // Insert 4 at the end
-    myList.display(); // Output: 2 3 4
+    myList.insertAtEnd(6);       // Insert 6 at the end
+
+    myList.display(); // Output: 2 3 4 5 6
+
+    myList.deleteFromEnd(); // Delete the last node
+
 
     myList.deleteFromBeginning(); // Delete the first node
-    
 
-    myList.display(); // Output: 3 4
+    myList.display(); // Output: 3 4 5
 
     return 0;
 }
