@@ -1,8 +1,7 @@
 #include <iostream>
 
-// Node class to represent individual elements of the queue
-class Node {
-public:
+// Node struct to represent individual elements of the queue
+struct Node {
     int data;
     Node* next;
 
