@@ -1,8 +1,7 @@
 #include <iostream>
 
-// Node class to represent individual elements of the stack
-class Node {
-public:
+// Node struct to represent individual elements of the stack
+struct Node {
     int data;
     Node* next;
 
@@ -71,7 +70,6 @@ int main() {
     stack.pop();
     stack.pop();
     stack.pop();
-    
 
     if (stack.isEmpty()) {
         std::cout << "Stack is empty." << std::endl;
