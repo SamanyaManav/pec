@@ -2,6 +2,8 @@
 
 int main() {
     int m, n, p, q;
+    int A[m][n], B[p][q], multiply[m][q];
+    int i, j, k; 
 
     printf("Enter dimensions for matrix A (m n): ");
     scanf("%d %d", &m, &n);
@@ -14,8 +16,6 @@ int main() {
         return 0;
     }
 
-    int A[m][n], B[p][q], multiply[m][q];
-    int i, j, k; // Declare loop counters at the beginning
 
     printf("Enter elements of matrix A:\n");
     for (i = 0; i < m; ++i) {
