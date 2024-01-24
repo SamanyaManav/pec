@@ -2,7 +2,7 @@
 #include <string.h>
 
 int main() {
-    char str1[100], str2[100], copiedString[100], concatenatedString[200];
+    char str1[100], str2[100], copiedString[100];
     int i;
 
     // Accept a string input from the user
